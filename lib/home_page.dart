@@ -81,66 +81,43 @@ class _HomePageState extends State<HomePage> {
           // physics: NeverScrollableScrollPhysics(),
           crossAxisCount: 2,
           children: List.generate(
-              allData.length,
-              (index) => Container(
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage("${allData[index].thumbnail}"),
-                            fit: BoxFit.cover),
-                        color: clr[Random().nextInt(4)],
-                        borderRadius: BorderRadius.circular(24)),
-                    margin: EdgeInsets.all(6),
-                    child: Stack(children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [
-                            Color(0xffB54FAA),
-                            Color(0xff939BF9),
-                            Color(0xff3ED09B),
-                            Color(0xffF5B741),
-                          ]),
-                        ),
-                      ),
-                      Text(
-                        "${allData[index].title}",
-                        style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ]),
-                    // child: Column(
-                    //   crossAxisAlignment: CrossAxisAlignment.start,
-                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //   children: [
-                    //     Text(
-                    //       "${allData[index].id}",
-                    //       style: TextStyle(
-                    //           fontSize: 20,
-                    //           color: Colors.black,
-                    //           fontWeight: FontWeight.w600),
-                    //     ),
-                    //     Text(
-                    //       "${allData[index].title}",
-                    //       style: TextStyle(
-                    //           fontSize: 24,
-                    //           color: Colors.black,
-                    //           fontWeight: FontWeight.w400),
-                    //     ),
-                    //     Container(
-                    //         // padding: EdgeInsets.all(4),
-                    //         decoration: BoxDecoration(
-                    //             borderRadius: BorderRadius.circular(16)),
-                    //         child: Image.network(
-                    //           allData[index].thumbnail,
-                    //           // fit: BoxFit.cover,
-                    //         )),
-                    //   ],
-                    // ),
-                    // height: 200,
-                    // width: 80,
-                  )),
+            allData.length,
+            (index) => Container(
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.26),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage("${allData[index].thumbnail}"),
+                      fit: BoxFit.cover),
+                  color: clr[Random().nextInt(4)],
+                  borderRadius: BorderRadius.circular(24)),
+              margin: EdgeInsets.all(6),
+              child: Container(
+                padding: EdgeInsets.all(10),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(24),
+                      bottomRight: Radius.circular(24)),
+                  gradient: LinearGradient(colors: [
+                    Color(0xffEE9CA7),
+                    Color(0xffFFDDE1),
+                    Color(0xffFFFFFF),
+                    // Colors.transparent
+                  ]),
+                ),
+                child: Stack(children: [
+                  Text(
+                    "${allData[index].title}",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ]),
+              ),
+            ),
+          ),
         ));
   }
 }
