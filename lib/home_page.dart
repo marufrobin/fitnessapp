@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:fitnessapp/model/fitnessModel.dart';
+import 'package:fitnessapp/screen/workout_deatil_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -82,39 +83,45 @@ class _HomePageState extends State<HomePage> {
           crossAxisCount: 2,
           children: List.generate(
             allData.length,
-            (index) => Container(
-              padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.26),
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage("${allData[index].thumbnail}"),
-                      fit: BoxFit.cover),
-                  color: clr[Random().nextInt(4)],
-                  borderRadius: BorderRadius.circular(24)),
-              margin: EdgeInsets.all(6),
+            (index) => GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          WorkoutDetailPage(fitnessModel: allData[index]),
+                    ));
+              },
               child: Container(
-                padding: EdgeInsets.all(10),
-                width: double.infinity,
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.26),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(24),
-                      bottomRight: Radius.circular(24)),
-                  gradient: LinearGradient(colors: [
-                    Color(0xffEE9CA7),
-                    Color(0xffFFDDE1),
-                    Color(0xffFFFFFF),
-                    // Colors.transparent
-                  ]),
-                ),
-                child: Stack(children: [
-                  Text(
-                    "${allData[index].title}",
-                    style: TextStyle(
+                    image: DecorationImage(
+                        image: NetworkImage("${allData[index].thumbnail}"),
+                        fit: BoxFit.cover),
+                    color: clr[Random().nextInt(4)],
+                    borderRadius: BorderRadius.circular(24)),
+                margin: EdgeInsets.all(6),
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(24),
+                        bottomRight: Radius.circular(24)),
+                    gradient: LinearGradient(colors: [
+                      Color(0xffEE9CA7),
+                      Color(0xffFFDDE1),
+                      Color(0xffFFFFFF),
+                      // Colors.transparent
+                    ]),
+                  ),
+                  child: Text("${allData[index].title}",
+                      style: TextStyle(
                         fontSize: 20,
                         color: Colors.black,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ]),
+                      )),
+                ),
               ),
             ),
           ),
