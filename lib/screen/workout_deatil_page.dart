@@ -1,4 +1,5 @@
 import 'package:fitnessapp/model/fitnessModel.dart';
+import 'package:fitnessapp/screen/workout_timer_page.dart';
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
@@ -56,7 +57,15 @@ class _WorkoutDetailPageState extends State<WorkoutDetailPage> {
                       style: TextStyle(fontSize: 18, color: Colors.purple),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => WorkoutTimerPage(
+                                      second: second,
+                                      fitnessModel: widget.fitnessModel,
+                                    )));
+                      },
                       child: Text("START"),
                       style: ElevatedButton.styleFrom(
                           primary: Colors.pinkAccent,
