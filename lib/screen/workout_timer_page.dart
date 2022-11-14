@@ -50,11 +50,15 @@ class _WorkoutTimerPageState extends State<WorkoutTimerPage> {
       ),
       body: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Image.network(
               "${widget.fitnessModel.gif}",
             ),
-            Text("${startCount}")
+            Text(
+              "${startCount}",
+              style: TextStyle(fontSize: 26, color: Colors.purple),
+            )
           ],
         ),
       ),
