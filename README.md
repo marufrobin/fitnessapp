@@ -8,4 +8,4 @@ This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
-![fitnessApp](https://user-images.githubusercontent.com/47666475/201581432-561b75b1-61c4-4638-b434-beecfcc3c869.gif)
+![FitnessAppDone gif](https://user-images.githubusercontent.com/47666475/201761941-f5c94b0e-7ae6-4b35-8527-a93c8a7b3ef0.gif)
