@@ -21,18 +21,23 @@ class _HomePageState extends State<HomePage> {
   late FitnessModel fitnessModel;
 
   fatchData() async {
-    var response = await http.get(Uri.parse(link));
-    // print(response.body);
-    var data = jsonDecode(response.body)["exercises"];
-    for (var item in data) {
-      fitnessModel = FitnessModel(
-          id: item["id"],
-          title: item["title"],
-          thumbnail: item["thumbnail"],
-          gif: item["gif"],
-          seconds: item["seconds"]);
-      allData.add(fitnessModel);
+    try {
+      var response = await http.get(Uri.parse(link));
+      // print(response.body);
+      var data = jsonDecode(response.body)["exercises"];
+      for (var item in data) {
+        fitnessModel = FitnessModel(
+            id: item["id"],
+            title: item["title"],
+            thumbnail: item["thumbnail"],
+            gif: item["gif"],
+            seconds: item["seconds"]);
+        allData.add(fitnessModel);
+      }
+    } catch (e) {
+      print(e);
     }
+
     // print(allData.length);
   }
 
@@ -52,10 +57,10 @@ class _HomePageState extends State<HomePage> {
       Color(0xffFFE0FC)
     ];
     List textClr = [
-      Color(0xfffffefd),
+      Color(0xffB54FAA),
       Color(0xff939BF9),
       Color(0xff3ED09B),
-      Color(0xffFFFEFD),
+      Color(0xffF5B741),
     ];
     var rnd = Random().nextInt(3) + 1;
     return Scaffold(
@@ -87,13 +92,26 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Text(
                           "${allData[index].id}",
-                          style: TextStyle(fontSize: 20, color: Colors.black),
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600),
                         ),
                         Text(
                           "${allData[index].title}",
-                          style: TextStyle(fontSize: 20, color: Colors.black),
+                          style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400),
                         ),
-                        Image.network(allData[index].thumbnail),
+                        Container(
+                            // padding: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16)),
+                            child: Image.network(
+                              allData[index].thumbnail,
+                              // fit: BoxFit.cover,
+                            )),
                       ],
                     ),
                     // height: 200,
